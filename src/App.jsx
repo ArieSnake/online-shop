@@ -15,6 +15,8 @@ export default function App() {
     { id: 109, name: "Puma Rs-X8", price: 225, photo: "https://images.footlocker.com/is/image/EBFL2/38989601?wid=250&hei=250" },
   ])
 
+  const [total, setTotal] = useState(0)
+
 
   const [basket, setBasket] = useState([])
 
@@ -72,6 +74,8 @@ export default function App() {
           onMove={moveToCart}
         />
         <Basket
+          total={total}
+          onTotal={setTotal}
           cart={basket}
           onIncrease={increaseCount}
           onDecrease={decreaseCount}

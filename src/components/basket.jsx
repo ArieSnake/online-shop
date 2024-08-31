@@ -1,9 +1,15 @@
-import { BasketItem } from './BasketItem'
+import { useEffect } from 'react';
+import { BasketItem } from './BasketItem';
 
-export const Basket = ({ cart, onIncrease, onDecrease, onRemove }) => {
+export const Basket = ({ cart, onIncrease, onDecrease, onRemove, total, onTotal }) => {
+
+    useEffect(() => {
+        let totalSum = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+        onTotal(totalSum)
+    }, [cart])
     return (
         <div className="col-md-5">
-            <h3>items</h3>
+            <h3>Total: <span>$</span> {total}</h3>
             <table className="table table-dark table-bordered">
                 <thead>
                     <tr>
@@ -27,5 +33,5 @@ export const Basket = ({ cart, onIncrease, onDecrease, onRemove }) => {
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
